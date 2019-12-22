@@ -12,13 +12,13 @@
   <title>Admin Page</title>
 
   <!-- Custom fonts for this template-->
-  <link href="/web_files/official_web/bootstrap/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="<?php echo base_url() ?>bootstrap/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Page level plugin CSS-->
-  <link href="/web_files/official_web/bootstrap/css/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="<?php echo base_url() ?>bootstrap/css/dataTables.bootstrap4.css" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="/web_files/official_web/bootstrap/css/sb-admin.css" rel="stylesheet">
+  <link href="<?php echo base_url() ?>bootstrap/css/sb-admin.css" rel="stylesheet">
 
 </head>
 
@@ -89,8 +89,8 @@
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
+      <li class="active">
+        <a class="nav-link" href="<?php echo modules("subjects") ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Môn thi</span>
         </a>

@@ -1,4 +1,3 @@
-</div>
 <!-- <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
@@ -38,14 +37,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="/web_files/official_web/bootstrap/js/jquery.min.js"></script>
-  <script src="/web_files/official_web/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url() ?>bootstrap/js/jquery.min.js"></script>
+  <script src="<?php echo base_url() ?>bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="/web_files/official_web/bootstrap/js/jquery.easing.min.js"></script>
+  <script src="<?php echo base_url() ?>bootstrap/js/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="/web_files/official_web/bootstrap/js/sb-admin.min.js"></script>
+  <script src="<?php echo base_url() ?>bootstrap/js/sb-admin.min.js"></script>
 
 </body>
 

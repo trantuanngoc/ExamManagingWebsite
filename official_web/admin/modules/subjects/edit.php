@@ -2,6 +2,15 @@
 <?php 
   
   require_once __DIR__. '/../../load_database/loadData.php';
+
+  $id=intval(getInput('SubjectID'));
+      $EditSubject=$db->fetchID("subject",$id);
+      if (empty($EditSubject)) {
+        $_SESSION['error']="Dữ liệu không tồn tại";
+        redirectAdmin("subjects");
+      }
+      
+
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
         $data=[
           "SubjectName"=>postInput('name'),
@@ -29,6 +38,10 @@
         }
 
     }
+
+
+
+      
  ?>
 
 <?php require_once __DIR__. '/../../layouts/header.php'; ?>

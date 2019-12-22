@@ -3,12 +3,12 @@
   
   require_once __DIR__. '/../../load_database/loadData.php';
 
-  $id=intval(getInput('SubjectID'));
-      $EditSubject=$db->fetchID("subject",$id);
-      if (empty($EditSubject)) {
-        $_SESSION['error']="Dữ liệu không tồn tại";
-        redirectAdmin("subjects");
-      }
+  $id=intval(getInput('id'));
+  $EditSubject=$db->fetchID("subject",$id);
+  if(empty($EditSubject)){
+    $_SESSION['error']="Dữ liệu không tồn tại";
+    redirectAdmin("subjects");
+  }
       
 
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
@@ -27,13 +27,14 @@
         }
 
         if (empty($error)) {
-          $id_insert=$db->insert("subject",$data);
-          if ($id_insert>0) {
-            $_SESSION['success']="Thêm thành công ";
+          $id_update=$db->update("subject",$data,array("SubjectID"=>$id));
+          if ($id_update>0) {
+            $_SESSION['success']="Cập nhật thành công ";
             redirectAdmin("subjects");
           }
           else {
-            $_SESSION['error']="Thêm thất bại ";
+            $_SESSION['error']="Cập nhật thất bại ";
+            redirectAdmin("subjects");
           }
         }
 
@@ -62,7 +63,7 @@
         </ol>
 
         <!-- Page Content -->
-        <h1>Thêm môn thi</h1>
+        <h1>Sửa môn thi</h1>
         <br>
         <br>
         
@@ -74,7 +75,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Môn thi </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập môn thi " name="name">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập môn thi " name="name" value="<?php echo $EditSubject['SubjectName'] ?>">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["name"])): ?>
@@ -90,7 +91,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Thời gian kiểm tra </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập thời gian " name="time">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập thời gian " name="time"   value="<?php echo $EditSubject['TimeExam'] ?>">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["time"])): ?>
@@ -102,7 +103,7 @@
 
               </div>
               
-              <button type="submit" class="btn btn-success ">Add</button>
+              <button type="submit" class="btn btn-success ">Edit</button>
             </form>
         </div>
       </div>

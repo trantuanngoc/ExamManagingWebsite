@@ -105,7 +105,7 @@
          */
         public function delete ($table ,  $id )
         {
-            $sql = "DELETE FROM {$table} WHERE id = $id ";
+            $sql = "DELETE FROM {$table} WHERE SubjectID = $id ";
 
             mysqli_query($this->link,$sql) or die (" Lỗi Truy Vấn delete   --- " .mysqli_error($this->link));
             return mysqli_affected_rows($this->link);

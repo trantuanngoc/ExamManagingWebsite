@@ -50,7 +50,9 @@
               <th scope="col">ID</th>
               <th scope="col">Họ và tên  </th>
               <th scope="col">Ngày sinh </th>
+              <th scope="col">Giới tính </th>
               <th scope="col">Email </th>
+              <th scope="col">Password </th>
               <th scope="col">Created Date</th>
               <th scope="col">Action</th>
 
@@ -62,7 +64,9 @@
                   <td><?php echo $item['studentid'] ?></td>
                   <td> <?php echo $item['firstname']," ", $item['lastname'] ?></td>
                   <td><?php echo $item['dateofbirth'] ?></td>
+                  <td><?php echo $item['sex'] ?></td>
                   <td><?php echo $item['mail'] ?></td>
+                  <td><?php echo $item['password'] ?></td>
                   <td><?php echo $item['createDate'] ?></td>
                   <td>
                     <a class="btn btn-xs btn-info" href="edit.php?id=<?php echo $item['studentid'] ?>">Sửa</a>

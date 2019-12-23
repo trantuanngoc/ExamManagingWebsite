@@ -7,9 +7,12 @@
           "firstname"=>postInput('firstname'),
           "lastname"=>postInput('lastname'),
           "dateofbirth"=>postInput('dateOfBirth'),
-          "mail"=>postInput('studentEmail'),
-          
+          "mail"=>postInput('studentEmail'), 
 
+        ];
+        $class_data=[
+
+          "Classid"=>postInput('class')
         ];
         
         $error=[];
@@ -36,8 +39,11 @@
 
         if (empty($error)) {
           
+          $id_add=$db->insert("class",$class_data);
+          $data['Classid']=fetchid("class","");
           $id_insert=$db->insert("students",$data);
           if ($id_insert>0) {
+    
             $_SESSION['success']="Thêm thành công ";
             redirectAdmin("students");
           }

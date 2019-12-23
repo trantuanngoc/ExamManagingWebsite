@@ -57,9 +57,9 @@
           </li>
 
           <li class="breadcrumb-item">
-            <a href="index.html">Danh mục </a>
+            <a href="index.html">Môn học  </a>
           </li>
-          <li class="breadcrumb-item active">Thêm mới </li>
+          <li class="breadcrumb-item active">Chỉnh sửa </li>
         </ol>
 
         <!-- Page Content -->

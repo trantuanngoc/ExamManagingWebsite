@@ -14,8 +14,9 @@
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Blank Page</li>
+          <li class="breadcrumb-item active">Môn học</li>
         </ol>
+
 
         <!-- Page Content -->
         <h1>Danh sách môn thi

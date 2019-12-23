@@ -4,7 +4,7 @@
   require_once __DIR__. '/../../load_database/loadData.php';
 
   $id=intval(getInput('id'));
-  $EditSubject=$db->fetchID("subject",$id);
+  $EditSubject=$db->fetchID("subject",$id,"SubjectID");
   if(empty($EditSubject)){
     $_SESSION['error']="Dữ liệu không tồn tại";
     redirectAdmin("subjects");

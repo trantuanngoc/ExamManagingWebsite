@@ -103,9 +103,9 @@
          * @param  array  $conditions [description]
          * @return integer             [description]
          */
-        public function delete ($table ,  $id )
+        public function delete ($table ,  $id ,$collum)
         {
-            $sql = "DELETE FROM {$table} WHERE SubjectID = $id ";
+            $sql = "DELETE FROM {$table} WHERE $collum = $id ";
 
             mysqli_query($this->link,$sql) or die (" Lỗi Truy Vấn delete   --- " .mysqli_error($this->link));
             return mysqli_affected_rows($this->link);
@@ -140,9 +140,9 @@
             return $data;
         } 
 
-        public function fetchID($table , $id )
+        public function fetchID($table , $id,$collum )
         {
-            $sql = "SELECT * FROM {$table} WHERE SubjectID = $id ";
+            $sql = "SELECT * FROM {$table} WHERE $collum = $id ";
             $result = mysqli_query($this->link,$sql) or die("Lỗi  truy vấn fetchID " .mysqli_error($this->link));
             return mysqli_fetch_assoc($result);
         }

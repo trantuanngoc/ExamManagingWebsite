@@ -96,13 +96,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?php echo modules("students") ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Sinh viên </span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?php echo modules("exams") ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Kì thi </span>
         </a>

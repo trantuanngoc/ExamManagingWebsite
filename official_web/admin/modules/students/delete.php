@@ -4,20 +4,20 @@
   require_once __DIR__. '/../../load_database/loadData.php';
 
   $id=intval(getInput('id'));
-  $EditSubject=$db->fetchID("subject",$id,"SubjectID");
-  if(empty($EditSubject)){
+  $EditStudent=$db->fetchID("students",$id,"studentid");
+  if(empty($EditStudent)){
     $_SESSION['error']="Dữ liệu không tồn tại";
-    redirectAdmin("subjects");
+    
   }
       
-  $id_delete=$db->delete("subject",$id,"SubjectID");
+  $id_delete=$db->delete("students",$id,"studentid");
   if($id_delete>0){
             $_SESSION['success']="Đã xóa ";
-            redirectAdmin("subjects");
+            redirectAdmin("students");
   }
   else {
         $_SESSION['error']="Chưa xóa ";
-            redirectAdmin("subjects");
+            redirectAdmin("students");
 
   }
       

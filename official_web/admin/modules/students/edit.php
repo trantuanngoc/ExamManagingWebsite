@@ -1,6 +1,6 @@
 
 <?php 
-  
+  $open="students";
   require_once __DIR__. '/../../load_database/loadData.php';
 
   $id=intval(getInput('id'));
@@ -75,25 +75,11 @@
 
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-
-          <li class="breadcrumb-item">
-            <a href="index.html">Sinh viên </a>
-          </li>
-          <li class="breadcrumb-item active">Chỉnh sửa</li>
-        </ol>
+       
 
         <!-- Page Content -->
         <h1>Sửa môn thi</h1>
-        <br>
-        <br>
         
-
-
         <div class="row">
         <div class="col-md-12">
             <form method="POST" action="">

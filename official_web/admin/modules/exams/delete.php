@@ -1,23 +1,23 @@
 
 <?php 
-  $open="subjects";
+  $open="exams";
   require_once __DIR__. '/../../load_database/loadData.php';
 
   $id=intval(getInput('id'));
-  $EditSubject=$db->fetchID("subject",$id,"SubjectID");
+  $EditSubject=$db->fetchID("examdetail",$id,"ExamDetailid");
   if(empty($EditSubject)){
     $_SESSION['error']="Dữ liệu không tồn tại";
-    redirectAdmin("subjects");
+    redirectAdmin("exams");
   }
       
-  $id_delete=$db->delete("subject",$id,"SubjectID");
+  $id_delete=$db->delete("examdetail",$id,"ExamDetailid");
   if($id_delete>0){
             $_SESSION['success']="Đã xóa ";
-            redirectAdmin("subjects");
+            redirectAdmin("exams");
   }
   else {
         $_SESSION['error']="Chưa xóa ";
-            redirectAdmin("subjects");
+            redirectAdmin("exams");
 
   }
       

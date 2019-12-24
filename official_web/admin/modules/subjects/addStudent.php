@@ -1,6 +1,6 @@
 
 <?php 
-  $open="students";
+  $open="subjects";
   require_once __DIR__. '/../../load_database/loadData.php';
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
         $data=[
@@ -9,8 +9,7 @@
           "dateofbirth"=>postInput('dateOfBirth'),
           "mail"=>postInput('studentEmail'),
           "sex"=>postInput('sex'),
-          "password"=>postInput('password'),
-          "Classname"=>postInput('class')
+          "password"=>postInput('password')
 
         ];
        
@@ -46,16 +45,16 @@
 
         if (empty($error)) {
           
+          $id_insert=$db->insert("learning",$data);
         
-          $id_insert=$db->insert("students",$data);
           if ($id_insert>0) {
     
             $_SESSION['success']="Thêm thành công ";
-            redirectAdmin("students");
+            redirectAdmin("subjects");
           }
           else {
             $_SESSION['error']="Thêm thất bại ";
-            redirectAdmin("students");
+            redirectAdmin("subjects");
           }
         }
 
@@ -107,7 +106,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Ngày sinh  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="yyyy/mm/dd " name="dateOfBirth">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập tên " name="dateOfBirth">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["dateOfBirth"])): ?>

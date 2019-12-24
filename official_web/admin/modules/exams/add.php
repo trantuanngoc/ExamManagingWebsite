@@ -1,61 +1,53 @@
 
 <?php 
-  $open="students";
+  $open="exams";
   require_once __DIR__. '/../../load_database/loadData.php';
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
         $data=[
-          "firstname"=>postInput('firstname'),
-          "lastname"=>postInput('lastname'),
-          "dateofbirth"=>postInput('dateOfBirth'),
-          "mail"=>postInput('studentEmail'),
-          "sex"=>postInput('sex'),
-          "password"=>postInput('password'),
-          "Classname"=>postInput('class')
-
+          "Sub"=>postInput('subject'),
+          "ExamDate"=>postInput('date'),
+          "ro"=>postInput('room'),
+          "TimeStart"=>postInput('start'),
+          "TimeEnd"=>postInput('end'),
+          
         ];
-       
+        
         $error=[];
-        if (postInput('firstname')=='') {
-          $error['firstname']="Chưa điền tên  ";
+        if (postInput('subject')=='') {
+          $error['subject']="Chưa điền môn  ";
 
         }
-        if (postInput('lastname')=='') {
-          $error['lastname']="Chưa điền họ ";
+        if (postInput('date')=='') {
+          $error['date']="Chưa điền họ ";
 
         }
-        if (postInput('studentEmail')=='') {
-          $error['studentEmail']="Chưa điền Email ";
+        if (postInput('room')=='') {
+          $error['room']="Chưa điền Email ";
 
         }
-        if (postInput('dateOfBirth')=='') {
-          $error['dateOfBirth']="Chưa điền ngày sinh ";
+        if (postInput('start')=='') {
+          $error['start']="Chưa điền ngày sinh ";
 
         }
-        if (postInput('class')=='') {
-          $error['class']="Chưa điền lớp ";
+        if (postInput('end')=='') {
+          $error['end']="Chưa điền lớp ";
 
         }
-        if (postInput('password')=='') {
-          $error['class']="Chưa điền password ";
-
-        }
-        if (postInput('sex')=='') {
-          $error['class']="Chưa điền giới tính ";
-
-        }
+       
 
         if (empty($error)) {
           
-        
-          $id_insert=$db->insert("students",$data);
+          
+          $id_insert=$db->insert("examdetail",$data);
+
           if ($id_insert>0) {
     
             $_SESSION['success']="Thêm thành công ";
-            redirectAdmin("students");
+            redirectAdmin("exams");
           }
           else {
             $_SESSION['error']="Thêm thất bại ";
-            redirectAdmin("students");
+            redirectAdmin("exams");
           }
         }
 
@@ -68,19 +60,19 @@
       <div class="container-fluid">
 
         <!-- Page Content -->
-        <h1>Thêm sinh viên</h1>
+        <h1>Thêm kì thi </h1>
       
         <div class="row">
         <div class="col-md-12">
             <form method="POST" action="">
               <div class="form-group">
-                  <label for="subjectInput" >Họ  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập họ  " name="lastname">
+                  <label for="subjectInput" >Môn thi  </label>
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập môn thi   " name="subject">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
-                  <?php if (isset($error["lastname"])): ?>
+                  <?php if (isset($error["subject"])): ?>
                     <p class="text-danger">
-                      <?php  echo $error["lastname"] ?>
+                      <?php  echo $error["subject"] ?>
                         
                     </p>
                   <?php endif ?>
@@ -90,13 +82,13 @@
 
               <div class="form-group">
                 
-                  <label for="subjectInput" >Tên  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập tên " name="firstname">
+                  <label for="subjectInput" >Ngày thi  </label>
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="yyyy/mm/dd " name="date">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
-                  <?php if (isset($error["firstname"])): ?>
+                  <?php if (isset($error["date"])): ?>
                     <p class="text-danger">
-                      <?php  echo $error["firstname"] ?>
+                      <?php  echo $error["date"] ?>
                         
                     </p>
                   <?php endif ?>
@@ -106,13 +98,13 @@
 
               <div class="form-group">
                 
-                  <label for="subjectInput" >Ngày sinh  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="yyyy/mm/dd " name="dateOfBirth">
+                  <label for="subjectInput" >Phòng thi   </label>
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập phòng thi  " name="room">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
-                  <?php if (isset($error["dateOfBirth"])): ?>
+                  <?php if (isset($error["room"])): ?>
                     <p class="text-danger">
-                      <?php  echo $error["dateOfBirth"] ?>
+                      <?php  echo $error["room"] ?>
                         
                     </p>
                   <?php endif ?>
@@ -123,13 +115,13 @@
 
               <div class="form-group">
                 
-                  <label for="subjectInput" >Giới tính  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập giới tính " name="sex"  >
+                  <label for="subjectInput" >Giờ bắt đầu  </label>
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="hh:mm:ss  " name="start"  >
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
-                  <?php if (isset($error["sex"])): ?>
+                  <?php if (isset($error["start"])): ?>
                     <p class="text-danger">
-                      <?php  echo $error["sex"] ?>
+                      <?php  echo $error["start"] ?>
                         
                     </p>
                   <?php endif ?>
@@ -139,13 +131,13 @@
 
               <div class="form-group">
                 
-                  <label for="subjectInput" >Email </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập Email" name="studentEmail">
+                  <label for="subjectInput" >Giờ kết thúc  </label>
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="hh:mm:ss" name="end">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
-                  <?php if (isset($error["studentEmail"])): ?>
+                  <?php if (isset($error["end"])): ?>
                     <p class="text-danger">
-                      <?php  echo $error["studentEmail"] ?>
+                      <?php  echo $error["end"] ?>
                         
                     </p>
                   <?php endif ?>
@@ -153,11 +145,11 @@
               </div>
 
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 
                   <label for="subjectInput" >Password </label>
                   <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập password" name="password"    >
-                  <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
+                  <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small>
                   
                   <?php if (isset($error["password"])): ?>
                     <p class="text-danger">
@@ -165,14 +157,14 @@
                         
                     </p>
                   <?php endif ?>
-
+              
               </div>
-
+              
               <div class="form-group">
                 
                   <label for="subjectInput" >Lớp  </label>
                   <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập lớp  " name="class">
-                  <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
+                  <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small>
                   
                   <?php if (isset($error["class"])): ?>
                     <p class="text-danger">
@@ -180,8 +172,8 @@
                         
                     </p>
                   <?php endif ?>
-
-              </div>
+              
+              </div> -->
               
               <button type="submit" class="btn btn-success ">Add</button>
             </form>

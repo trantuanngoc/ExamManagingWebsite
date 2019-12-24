@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
+            <a href="http://localhost/web_files/official_web/admin/">Dashboard</a>
           </li>
           <li class="breadcrumb-item active">Trang chủ</li>
         </ol>

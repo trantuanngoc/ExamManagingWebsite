@@ -1,5 +1,5 @@
 <?php 
-    
+    $open="students";
     require_once __DIR__. '/../../load_database/loadData.php';
     $subject=$db->fetchAll("students");
     
@@ -9,13 +9,6 @@
 
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Blank Page</li>
-        </ol>
 
         <!-- Page Content -->
         <h1>Danh sách sinh viên 

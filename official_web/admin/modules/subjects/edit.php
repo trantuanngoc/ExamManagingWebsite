@@ -1,6 +1,6 @@
 
 <?php 
-  
+  $open="subjects";
   require_once __DIR__. '/../../load_database/loadData.php';
 
   $id=intval(getInput('id'));
@@ -50,17 +50,7 @@
 
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-
-          <li class="breadcrumb-item">
-            <a href="index.html">Môn học  </a>
-          </li>
-          <li class="breadcrumb-item active">Chỉnh sửa </li>
-        </ol>
+        
 
         <!-- Page Content -->
         <h1>Sửa môn thi</h1>

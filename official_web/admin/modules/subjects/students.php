@@ -1,7 +1,7 @@
 <?php 
-    $open="exams";
+   $open="subjects";
     require_once __DIR__. '/../../load_database/loadData.php';
-    $subject=$db->fetchAll("examdetail");
+    $subject=$db->fetchAll("learning");
     
  ?>
 <?php require_once __DIR__. '/../../layouts/header.php'; ?>
@@ -9,10 +9,10 @@
 
       <div class="container-fluid">
 
-        
+
         <!-- Page Content -->
-        <h1>Danh sách kì thi  
-            <a href="add.php" class="btn btn-success">Thêm mới </a>
+        <h1>Danh sách được thi 
+            <a href="addStudent.php" class="btn btn-success">Thêm mới </a>
         </h1>
         <br>
         <div class="clearfix"></div>
@@ -41,11 +41,12 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Môn   </th>
-              <th scope="col">Ngày thi </th>
-              <th scope="col">Phòng thi </th>
-              <th scope="col">Giờ bắt đầu </th>
-              <th scope="col">Giờ kết thúc </th>
+              <th scope="col">Họ và tên  </th>
+              <th scope="col">Ngày sinh </th>
+              <th scope="col">Giới tính </th>
+              <th scope="col">Email </th>
+              <th scope="col">Password </th>
+              <th scope="col">Created Date</th>
               <th scope="col">Action</th>
 
             </tr>
@@ -53,15 +54,16 @@
           <tbody>
             <?php $stt=1 ;foreach ($subject as $item): ?>
                 <tr>
-                  <td><?php echo $item['ExamDetailid'] ?></td>
-                  <td> <?php echo $item['Sub']?></td>
-                  <td> <?php echo $item['ExamDate']?></td>
-                  <td><?php echo $item['ro'] ?></td>
-                  <td><?php echo $item['TimeStart'] ?></td>
-                  <td><?php echo $item['TimeEnd'] ?></td>
+                  <td><?php echo $item['studentid'] ?></td>
+                  <td> <?php echo $item['firstname']," ", $item['lastname'] ?></td>
+                  <td><?php echo $item['dateofbirth'] ?></td>
+                  <td><?php echo $item['sex'] ?></td>
+                  <td><?php echo $item['mail'] ?></td>
+                  <td><?php echo $item['password'] ?></td>
+                  <td><?php echo $item['createDate'] ?></td>
                   <td>
-                    <a class="btn btn-xs btn-info" href="edit.php?id=<?php echo $item['ExamDetailid'] ?>">Sửa</a>
-                    <a class="btn btn-xs btn-danger" href="delete.php?id=<?php echo $item['ExamDetailid'] ?>">Xóa</a>
+                    <a class="btn btn-xs btn-info" href="edit.php?id=<?php echo $item['studentid'] ?>">Sửa</a>
+                    <a class="btn btn-xs btn-danger" href="delete.php?id=<?php echo $item['studentid'] ?>">Xóa</a>
                   </td>
                 </tr>
             <?php $stt++;endforeach ?>

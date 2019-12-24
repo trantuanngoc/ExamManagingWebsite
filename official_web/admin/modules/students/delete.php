@@ -1,6 +1,6 @@
 
 <?php 
-  
+  $open="students";
   require_once __DIR__. '/../../load_database/loadData.php';
 
   $id=intval(getInput('id'));

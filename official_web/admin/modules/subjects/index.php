@@ -1,5 +1,5 @@
 <?php 
-    
+    $open="subjects";
     require_once __DIR__. '/../../load_database/loadData.php';
     $subject=$db->fetchAll("subject");
     
@@ -8,14 +8,6 @@
     <div id="content-wrapper">
 
       <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Môn học</li>
-        </ol>
 
 
         <!-- Page Content -->
@@ -66,6 +58,7 @@
                   <td>
                     <a class="btn btn-xs btn-info" href="edit.php?id=<?php echo $item['SubjectID'] ?>">Sửa</a>
                     <a class="btn btn-xs btn-danger" href="delete.php?id=<?php echo $item['SubjectID'] ?>">Xóa</a>
+                    <a class="btn btn-xs btn-outline-dark" href="students.php?id=<?php echo $item['SubjectID'] ?>">Danh sách</a>
                   </td>
                 </tr>
             <?php $stt++;endforeach ?>

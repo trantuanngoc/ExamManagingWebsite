@@ -1,6 +1,6 @@
 
 <?php 
-  
+  $open="subjects";
   require_once __DIR__. '/../../load_database/loadData.php';
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
         $data=[
@@ -36,17 +36,6 @@
 
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-
-          <li class="breadcrumb-item">
-            <a href="index.html">Môn học</a>
-          </li>
-          <li class="breadcrumb-item active">Thêm mới </li>
-        </ol>
 
         <!-- Page Content -->
         <h1>Thêm môn thi</h1>

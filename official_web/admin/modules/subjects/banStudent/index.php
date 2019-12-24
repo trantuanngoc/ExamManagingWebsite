@@ -1,18 +1,18 @@
 <?php 
-    $open="subjects";
-    require_once __DIR__. '/../../load_database/loadData.php';
-    $subject=$db->fetchAll("subject");
+   $open="subjects";
+    require_once __DIR__. '/../../../load_database/loadData.php';
+    $subject=$db->fetchAll("Lit");
     
  ?>
-<?php require_once __DIR__. '/../../layouts/header.php'; ?>
+<?php require_once __DIR__. '/../../../layouts/header.php'; ?>
     <div id="content-wrapper">
 
       <div class="container-fluid">
 
 
         <!-- Page Content -->
-        <h1>Danh sách môn thi
-            <a href="add.php" class="btn btn-success">Thêm mới </a>
+        <h1>Danh sách cấm thi  
+            <a href="addBanStudent.php" class="btn btn-success">Thêm mới </a>
         </h1>
         <br>
         <div class="clearfix"></div>
@@ -41,9 +41,12 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Tên môn </th>
-              <th scope="col">Ngày thi </th>
-              <th scope="col">Created Date</th>
+              <th scope="col">Họ và tên  </th>
+              <th scope="col">Ngày sinh </th>
+              <th scope="col">Giới tính </th>
+              <th scope="col">Email </th>
+              <th scope="col">Password </th>
+              <th scope="col">Lớp</th>
               <th scope="col">Action</th>
 
             </tr>
@@ -51,15 +54,16 @@
           <tbody>
             <?php $stt=1 ;foreach ($subject as $item): ?>
                 <tr>
-                  <td><?php echo $item['SubjectID'] ?></td>
-                  <td> <?php echo $item['SubjectName'] ?></td>
-                  <td><?php echo $item['TimeExam'] ?></td>
-                  <td><?php echo $item['CreatedDate'] ?></td>
+                  <td><?php echo $item['studentid'] ?></td>
+                  <td> <?php echo $item['lastname']," ",$item['firstname'] ?></td>
+                  <td><?php echo $item['dateofbirth'] ?></td>
+                  <td><?php echo $item['sex'] ?></td>
+                  <td><?php echo $item['mail'] ?></td>
+                  <td><?php echo $item['password'] ?></td>
+                  <td><?php echo $item['Classname'] ?></td>
                   <td>
-                    <a class="btn btn-xs btn-info" href="edit.php?id=<?php echo $item['SubjectID'] ?>">Sửa</a>
-                    <a class="btn btn-xs btn-danger" href="delete.php?id=<?php echo $item['SubjectID'] ?>">Xóa</a>
-                    <a class="btn btn-xs btn-outline-dark" href="students.php?id=<?php echo $item['SubjectID'] ?>">Được thi</a>
-                    <a class="btn btn-xs btn-outline-dark" href="banStudent/index.php?id=<?php echo $item['SubjectID'] ?>">Cấm thi</a>
+                    <a class="btn btn-xs btn-info" href="editBanStudent.php?id=<?php echo $item['studentid'] ?>">Sửa</a>
+                    <a class="btn btn-xs btn-danger" href="deleteBanStudent.php?id=<?php echo $item['studentid'] ?>">Xóa</a>
                   </td>
                 </tr>
             <?php $stt++;endforeach ?>
@@ -82,4 +86,4 @@
       </div>
 
       
-<?php require_once __DIR__. '/../../layouts/footer.php'; ?>
+<?php require_once __DIR__. '/../../../layouts/footer.php'; ?>

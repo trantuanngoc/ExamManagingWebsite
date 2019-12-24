@@ -1,13 +1,13 @@
 
 <?php 
   $open="students";
-  require_once __DIR__. '/../../load_database/loadData.php';
+  require_once __DIR__. '/../../../load_database/loadData.php';
 
   $id=intval(getInput('id'));
-  $EditStudent=$db->fetchID("students",$id,"studentid");
+  $EditStudent=$db->fetchID("Lit",$id,"studentid");
   if(empty($EditStudent)){
     $_SESSION['error']="Dữ liệu không tồn tại";
-    redirectAdmin("students");
+    redirectAdmin("subjects/banStudent/");
   }
       
 
@@ -18,7 +18,8 @@
           "dateofbirth"=>postInput('dateOfBirth'),
           "mail"=>postInput('studentEmail'),
           "sex"=>postInput('sex'),
-          "password"=>postInput('password')
+          "password"=>postInput('password'),
+          "Classname"=>postInput('class')
 
         ];
         $error=[];
@@ -52,14 +53,14 @@
         }
 
         if (empty($error)) {
-          $id_update=$db->update("students",$data,array("studentid"=>$id));
+          $id_update=$db->update("Lit",$data,array("studentid"=>$id));
           if ($id_update>0) {
             $_SESSION['success']="Cập nhật thành công ";
-            redirectAdmin("students");
+            redirectAdmin("subjects/banStudent/");
           }
           else {
             $_SESSION['error']="Cập nhật thất bại ";
-            redirectAdmin("students");
+            redirectAdmin("subjects/banStudent/");
           }
         }
 
@@ -70,7 +71,7 @@
       
  ?>
 
-<?php require_once __DIR__. '/../../layouts/header.php'; ?>
+<?php require_once __DIR__. '/../../../layouts/header.php'; ?>
     <div id="content-wrapper">
 
       <div class="container-fluid">
@@ -78,7 +79,7 @@
        
 
         <!-- Page Content -->
-        <h1>Sửa sinh viên </h1>
+        <h1>Sửa thông tin </h1>
         
         <div class="row">
         <div class="col-md-12">
@@ -204,4 +205,4 @@
       <!-- Sticky Footer -->
 
       
-<?php require_once __DIR__. '/../../layouts/footer.php'; ?>
+<?php require_once __DIR__. '/../../../layouts/footer.php'; ?>

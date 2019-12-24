@@ -1,7 +1,7 @@
 <?php 
    $open="subjects";
     require_once __DIR__. '/../../load_database/loadData.php';
-    $subject=$db->fetchAll("learning");
+    $subject=$db->fetchAll("Ma");
     
  ?>
 <?php require_once __DIR__. '/../../layouts/header.php'; ?>
@@ -46,7 +46,7 @@
               <th scope="col">Giới tính </th>
               <th scope="col">Email </th>
               <th scope="col">Password </th>
-              <th scope="col">Created Date</th>
+              <th scope="col">Lớp</th>
               <th scope="col">Action</th>
 
             </tr>
@@ -60,10 +60,10 @@
                   <td><?php echo $item['sex'] ?></td>
                   <td><?php echo $item['mail'] ?></td>
                   <td><?php echo $item['password'] ?></td>
-                  <td><?php echo $item['createDate'] ?></td>
+                  <td><?php echo $item['Classname'] ?></td>
                   <td>
-                    <a class="btn btn-xs btn-info" href="edit.php?id=<?php echo $item['studentid'] ?>">Sửa</a>
-                    <a class="btn btn-xs btn-danger" href="delete.php?id=<?php echo $item['studentid'] ?>">Xóa</a>
+                    <a class="btn btn-xs btn-info" href="editStudent.php?id=<?php echo $item['studentid'] ?>">Sửa</a>
+                    <a class="btn btn-xs btn-danger" href="deleteStudent.php?id=<?php echo $item['studentid'] ?>">Xóa</a>
                   </td>
                 </tr>
             <?php $stt++;endforeach ?>

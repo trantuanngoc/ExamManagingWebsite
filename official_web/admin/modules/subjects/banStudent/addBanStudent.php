@@ -1,16 +1,7 @@
 
 <?php 
-  $open="students";
-  require_once __DIR__. '/../../load_database/loadData.php';
-
-  $id=intval(getInput('id'));
-  $EditStudent=$db->fetchID("students",$id,"studentid");
-  if(empty($EditStudent)){
-    $_SESSION['error']="Dữ liệu không tồn tại";
-    redirectAdmin("students");
-  }
-      
-
+  $open="subjects";
+  require_once __DIR__. '/../../../load_database/loadData.php';
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
         $data=[
           "firstname"=>postInput('firstname'),
@@ -18,9 +9,11 @@
           "dateofbirth"=>postInput('dateOfBirth'),
           "mail"=>postInput('studentEmail'),
           "sex"=>postInput('sex'),
-          "password"=>postInput('password')
+          "password"=>postInput('password'),
+          "Classname"=>postInput('class')
 
         ];
+       
         $error=[];
         if (postInput('firstname')=='') {
           $error['firstname']="Chưa điền tên  ";
@@ -50,43 +43,42 @@
           $error['class']="Chưa điền giới tính ";
 
         }
+        if (postInput('class')=='') {
+          $error['class']="Chưa điền lớp ";
+        }
 
         if (empty($error)) {
-          $id_update=$db->update("students",$data,array("studentid"=>$id));
-          if ($id_update>0) {
-            $_SESSION['success']="Cập nhật thành công ";
-            redirectAdmin("students");
+          
+          $id_insert=$db->insert("Lit",$data);
+        
+          if ($id_insert>0) {
+    
+            $_SESSION['success']="Thêm thành công ";
+            redirectAdmin("subjects/banStudent");
           }
           else {
-            $_SESSION['error']="Cập nhật thất bại ";
-            redirectAdmin("students");
+            $_SESSION['error']="Thêm thất bại ";
+            redirectAdmin("subjects/banStudent");
           }
         }
 
     }
-
-
-
-      
  ?>
 
-<?php require_once __DIR__. '/../../layouts/header.php'; ?>
+<?php require_once __DIR__. '/../../../layouts/header.php'; ?>
     <div id="content-wrapper">
 
       <div class="container-fluid">
 
-       
-
         <!-- Page Content -->
-        <h1>Sửa sinh viên </h1>
-        
+        <h1>Thêm sinh viên</h1>
+      
         <div class="row">
         <div class="col-md-12">
             <form method="POST" action="">
               <div class="form-group">
-                
                   <label for="subjectInput" >Họ  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập họ  " name="lastname" value="<?php echo $EditStudent['lastname'] ?>">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập họ  " name="lastname">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["lastname"])): ?>
@@ -102,7 +94,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Tên  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập tên " name="firstname" value="<?php echo $EditStudent['firstname'] ?>">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập tên " name="firstname">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["firstname"])): ?>
@@ -118,7 +110,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Ngày sinh  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập tên " name="dateOfBirth"   value="<?php echo $EditStudent['dateofbirth'] ?>">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập tên " name="dateOfBirth">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["dateOfBirth"])): ?>
@@ -131,10 +123,11 @@
               </div>
 
 
+
               <div class="form-group">
                 
                   <label for="subjectInput" >Giới tính  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập giới tính " name="sex"   value="<?php echo $EditStudent['sex'] ?>">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập giới tính " name="sex"  >
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["sex"])): ?>
@@ -150,7 +143,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Email </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập Email" name="studentEmail"    value="<?php echo $EditStudent['mail'] ?>">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập Email" name="studentEmail">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["studentEmail"])): ?>
@@ -166,7 +159,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Password </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập password" name="password"    value="<?php echo $EditStudent['password'] ?>">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập password" name="password"    >
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["password"])): ?>
@@ -181,7 +174,7 @@
               <div class="form-group">
                 
                   <label for="subjectInput" >Lớp  </label>
-                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập lớp  " name="class"    value="<?php echo $EditStudent['Classname'] ?>">
+                  <input type="text" class="form-control col-sm-6" id="subjectInput" aria-describedby="emailHelp" placeholder="Nhập lớp  " name="class">
                   <!-- <small id="emailHelp" class="form-text text-muted">Hãy nhập theo cách của bạn</small> -->
                   
                   <?php if (isset($error["class"])): ?>
@@ -193,7 +186,7 @@
 
               </div>
               
-              <button type="submit" class="btn btn-success ">Edit</button>
+              <button type="submit" class="btn btn-success ">Add</button>
             </form>
         </div>
       </div>
@@ -204,4 +197,4 @@
       <!-- Sticky Footer -->
 
       
-<?php require_once __DIR__. '/../../layouts/footer.php'; ?>
+<?php require_once __DIR__. '/../../../layouts/footer.php'; ?>

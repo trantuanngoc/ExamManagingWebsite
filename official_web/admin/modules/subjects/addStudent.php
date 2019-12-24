@@ -9,7 +9,8 @@
           "dateofbirth"=>postInput('dateOfBirth'),
           "mail"=>postInput('studentEmail'),
           "sex"=>postInput('sex'),
-          "password"=>postInput('password')
+          "password"=>postInput('password'),
+          "Classname"=>postInput('class')
 
         ];
        
@@ -42,19 +43,22 @@
           $error['class']="Chưa điền giới tính ";
 
         }
+        if (postInput('class')=='') {
+          $error['class']="Chưa điền lớp ";
+        }
 
         if (empty($error)) {
           
-          $id_insert=$db->insert("learning",$data);
+          $id_insert=$db->insert("Ma",$data);
         
           if ($id_insert>0) {
     
             $_SESSION['success']="Thêm thành công ";
-            redirectAdmin("subjects");
+            redirectAdmin("subjects/students.php");
           }
           else {
             $_SESSION['error']="Thêm thất bại ";
-            redirectAdmin("subjects");
+            redirectAdmin("subjects/students.php");
           }
         }
 
